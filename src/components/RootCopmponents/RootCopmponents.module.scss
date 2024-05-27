@@ -1,0 +1,19 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 264px 1fr;
+  gap: 24px;
+  width: 1083px;
+  height: 100%;
+  margin: 24px auto;
+}
+
+@media screen and (max-width: 904px) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: 264px 1fr;
+    gap: 24px;
+    width: 855px;
+    height: 100%;
+    margin: 24px auto;
+  }
+}
