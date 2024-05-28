@@ -1,6 +1,4 @@
-import { FC, useContext, memo, useMemo, useCallback } from "react";
-
-import { ContextDispanch } from "../../RootCopmponents";
+import { FC, memo, useMemo, useCallback } from "react";
 import { EThemesName } from "../../../../types/types";
 import {
   actionCreaterAllTopics,
@@ -9,16 +7,16 @@ import {
   actionCreaterTravel,
   actionCreaterTrips,
 } from "../../../../reducer/actionCreater";
+import { TDispatch } from "../../../../types/types";
 interface Iname {
   name: string;
   isActive: string;
   setIsActiveFunc: (name: string) => void;
+  dispatch: TDispatch;
 }
 
 const ItemNavigation: FC<Iname> = memo(
-  ({ name, isActive, setIsActiveFunc }) => {
-    const dispatch = useContext(ContextDispanch);
-
+  ({ name, isActive, setIsActiveFunc, dispatch }) => {
     const handlerClick = useCallback(
       (name: string) => {
         if (dispatch === undefined) {
@@ -39,7 +37,7 @@ const ItemNavigation: FC<Iname> = memo(
             return console.log("error");
         }
       },
-      [name]
+      [name],
     );
 
     const rootFunc = useCallback(
@@ -47,12 +45,12 @@ const ItemNavigation: FC<Iname> = memo(
         setIsActiveFunc(name);
         handlerClick(name);
       },
-      [name]
+      [name],
     );
 
     const classActive = useMemo(
       () => (isActive === name ? "active" : " "),
-      [isActive]
+      [isActive],
     );
 
     return (
@@ -60,7 +58,7 @@ const ItemNavigation: FC<Iname> = memo(
         {name}
       </li>
     );
-  }
+  },
 );
 
 export default ItemNavigation;

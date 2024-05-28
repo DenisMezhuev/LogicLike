@@ -1,3 +1,5 @@
+import { Dispatch } from "react";
+
 export enum EAction {
   ALL_TOPICS = "ALL_TOPICS",
   LOGIC_AND_THINKING = "LOGIC_AND_THINKING",
@@ -28,3 +30,8 @@ export interface IresponseData {
   arrTheme: data[];
   theme: EAction;
 }
+export interface Action {
+  type: EAction;
+  payload?: data[];
+}
+export type TDispatch = Dispatch<Action>;

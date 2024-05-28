@@ -1,25 +1,12 @@
-import {
-  Dispatch,
-  createContext,
-  memo,
-  useCallback,
-  useEffect,
-  useReducer,
-  useRef,
-  useState,
-} from "react";
+import { memo, useEffect, useReducer, useRef, useState } from "react";
 
 import Navigation from "./Navigation/Navigation";
 import Courses from "./Сourses/Сourses";
 import { EAction, IresponseData, data } from "../../types/types";
-import { Action, stateReducer } from "../../reducer/stateReducer";
+import { stateReducer } from "../../reducer/stateReducer";
 import styles from "./RootCopmponents.module.scss";
 import { arrConst } from "../../constants/constants";
 import { actionCreaterGetData } from "../../reducer/actionCreater";
-
-export const ContextDispanch = createContext<Dispatch<Action> | undefined>(
-  undefined
-);
 
 const RootCopmponents = memo(() => {
   const initialState: IresponseData = {
@@ -51,7 +38,7 @@ const RootCopmponents = memo(() => {
   if (isLoading) {
     return <></>;
   }
-  
+
   const memoFuncBackendData = (obj: IresponseData, deps: string) => {
     if (Object.is(refDepsBackendData.current, deps)) {
       return refBackendData.current;
@@ -67,9 +54,7 @@ const RootCopmponents = memo(() => {
 
   return (
     <div className={styles.wrapper}>
-      <ContextDispanch.Provider value={dispatch}>
-        <Navigation />
-      </ContextDispanch.Provider>
+      <Navigation dispatch={dispatch} />
       <Courses {...memoBackendData} />
     </div>
   );

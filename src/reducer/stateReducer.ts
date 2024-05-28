@@ -1,13 +1,8 @@
-import { EAction, IresponseData, data } from "../types/types";
-
-export interface Action {
-  type: EAction;
-  payload?: data[];
-}
+import { EAction, IresponseData, data, Action } from "../types/types";
 
 export const stateReducer = (
   state: IresponseData,
-  action: Action
+  action: Action,
 ): IresponseData => {
   switch (action.type) {
     case EAction.GET_DATA:
@@ -18,7 +13,7 @@ export const stateReducer = (
       return {
         ...state,
         arrTheme: state.items.filter((elem) =>
-          elem.tags.includes("Логика и мышление")
+          elem.tags.includes("Логика и мышление"),
         ),
         theme: EAction.LOGIC_AND_THINKING,
       };
@@ -32,7 +27,7 @@ export const stateReducer = (
       return {
         ...state,
         arrTheme: state.items.filter((elem) =>
-          elem.tags.includes("Головоломки")
+          elem.tags.includes("Головоломки"),
         ),
         theme: EAction.TRIPS,
       };
@@ -40,7 +35,7 @@ export const stateReducer = (
       return {
         ...state,
         arrTheme: state.items.filter((elem) =>
-          elem.tags.includes("Страны и столицы")
+          elem.tags.includes("Страны и столицы"),
         ),
         theme: EAction.TRAVEL,
       };
